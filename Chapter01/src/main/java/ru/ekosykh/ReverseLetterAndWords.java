@@ -26,23 +26,28 @@ public class ReverseLetterAndWords {
 
     public static String reverseLettersAndWords(String s) {
         char[] chars = s.toCharArray();
+        char[] result = new char[chars.length];
 
-        char[] letters = new char[chars.length];
-
-        int lettersInTotal = 0;
+        int i_result = 0;
+        int j_back = chars.length - 1;
         for (int i = 0; i < chars.length; i++) {
-            if (isLetter(chars[i])) {
-                letters[lettersInTotal++] = chars[i];
+            if (!isLetter(chars[i])) {
+                result[i_result++] = chars[i];
+            } else {
+                while (j_back >= 0 && !isLetter(chars[j_back])) {
+                    j_back--;
+                }
+                while (j_back >= 0 && isLetter(chars[j_back])) {
+                    result[i_result++] = chars[j_back--];
+                }
+                while (i < chars.length && isLetter(chars[i])) {
+                    i++;
+                }
+                i--;
             }
         }
 
-        for (int i = 0; i < chars.length; i++) {
-            if (isLetter(chars[i])) {
-                chars[i] = letters[--lettersInTotal];
-            }
-        }
-
-        return new String(chars);
+        return new String(result);
     }
 
     private static boolean isLetter(char c) {

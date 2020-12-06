@@ -22,4 +22,14 @@ public class ReverseLetterAndWordsTest {
     public void testReverseLettersAndWords() {
         assertEquals("This,, ''is' a string", reverseLettersAndWords("gnirts,, ''a' si sihT"));
     }
+
+    @Test
+    public void testReverseLettersAndWords1() {
+        assertEquals("i'a ", reverseLettersAndWords("a'i "));
+    }
+
+    @Test
+    public void testReverseLettersAndWords2() {
+        assertEquals("' i ,a !", reverseLettersAndWords("' a ,i !"));
+    }
 }
